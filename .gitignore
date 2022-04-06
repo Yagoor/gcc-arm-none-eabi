@@ -1,10 +1,38 @@
-# Source files
+###################
+####### Vim #######
+###################
+
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+
+###################
+##### Vagrant #####
+###################
+
+# General
+.vagrant/
+
+# Log files
+*.log
+
+###################
+##### Project #####
+###################
+
 gcc-arm-none-eabi-*
 
-# Linux
-.bash_history
-
-# Project
-build-prerequisites
-install-sources
-build-toolchain
+###################
+####### EOF #######
+###################
