@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "bento/ubuntu-16.04"
+    config.vm.box = "bento/ubuntu-16.04-i386"
 
     config.vm.synced_folder ".", "/home/vagrant/gcc-arm-none-eabi"
 
@@ -8,5 +8,5 @@ Vagrant.configure("2") do |config|
         vb.cpus = 2
     end
     
-    config.vm.provision "shell", path: "bootstrap-ubuntu-16.04.sh"    
+    config.vm.provision "shell", path: "bootstrap-ubuntu-16.04-i386.sh"    
 end

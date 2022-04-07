@@ -1,4 +1,4 @@
-name: vagrant-build
+name: vagrant-build-i386
 
 on: [push]
 
@@ -24,12 +24,12 @@ jobs:
     - name: Run scripts
       run: vagrant ssh -c 'cd gcc-arm-none-eabi && sudo sh build.sh'
 
-    # - name: Copy ISO from vagrant
-    #   run: vagrant ssh -c 'cat /tmp/lfs.iso' > ~/lfs.iso
+    - name: Copy ISO from vagrant
+      run: vagrant ssh -c 'cat /home/vagrant/gcc-arm-none-eabi/gcc-arm-none-eabi-10.3-2021.10/pkg/gcc-arm-none-eabi-10.3-2022.04-x86_64-linux.tar.bz2' > ~/gcc-arm-none-eabi-10.3-2022.04-x86_64-linux.tar.bz2
 
-    # - name: Upload Artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: LFS iso image from Vagrant build
-    #     path: ~/lfs.iso
-    #     retention-days: 5
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: LFS iso image from Vagrant build
+        path: ~/gcc-arm-none-eabi-10.3-2022.04-x86_64-linux.tar.bz2
+        retention-days: 5
