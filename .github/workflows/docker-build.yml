@@ -1,0 +1,33 @@
+name: docker-build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-i386:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v2
+      with:
+          fetch-depth: '0'
+          submodules: 'recursive'
+          persist-credentials: false
+
+    - name: Build docker image
+      run: |
+        docker build . -f Dockerfile-i386 -t docker-build-i386 --no-cache --pull
+
+    - name: Run docker image
+      run: |
+        docker run --cap-add SYS_TIME -v `pwd`:/home/user/repo docker-build-i386 bash --login -c "cd repo && sudo sh build.sh"
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: gcc-arm-none-eabi-10.3-2021.10-i386-linux.tar.bz2
+        path: gcc-arm-none-eabi-10.3-2021.10/pkg/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2
